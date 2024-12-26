@@ -27,12 +27,12 @@ to
     - On proxve
     ````{verbatim}
        root@proxve:~# lsblk |awk 'NR==1{print $0" DEVICE-ID(S)"}NR>1{dev=$1;printf $0" ";system("find /dev/disk/by-id -lname \"*"dev"\" -printf \" %p\"");print "";}'|grep -v -E 'part|lvm' 
-NAME                           MAJ:MIN RM   SIZE RO TYPE MOUNTPOINTS DEVICE-ID(S)
-sda                              8:0    0   3.6T  0 disk   /dev/disk/by-id/ata-WDC_WD40EZAZ-00SF3B0_WD-WX62D62K61TY /dev/disk/by-id/wwn-0x50014ee2155c5fae
-sdb                              8:16   0 931.5G  0 disk   /dev/disk/by-id/ata-ST31000528AS_9VP9397Y /dev/disk/by-id/wwn-0x5000c500275c40fc
-sdc                              8:32   0   3.6T  0 disk   /dev/disk/by-id/ata-WDC_WD40EZAZ-00SF3B0_WD-WX62D6232HXC /dev/disk/by-id/wwn-0x50014ee2155c0b9b
-sdd                              8:48   0 931.5G  0 disk   /dev/disk/by-id/ata-ST31000528AS_9VP93P1W /dev/disk/by-id/wwn-0x5000c5002760d8aa
-sde                              8:64   0 232.9G  0 disk   /dev/disk/by-id/wwn-0x50025385501600f3 /dev/disk/by-id/ata-Samsung_SSD_840_Series_S14GNEBCC25241K
+        NAME                           MAJ:MIN RM   SIZE RO TYPE MOUNTPOINTS DEVICE-ID(S)
+        sda                              8:0    0   3.6T  0 disk   /dev/disk/by-id/ata-WDC_WD40EZAZ-00SF3B0_WD-WX62D62K61TY /dev/disk/by-id/wwn-0x50014ee2155c5fae
+        sdb                              8:16   0 931.5G  0 disk   /dev/disk/by-id/ata-ST31000528AS_9VP9397Y /dev/disk/by-id/wwn-0x5000c500275c40fc
+        sdc                              8:32   0   3.6T  0 disk   /dev/disk/by-id/ata-WDC_WD40EZAZ-00SF3B0_WD-WX62D6232HXC /dev/disk/by-id/wwn-0x50014ee2155c0b9b
+        sdd                              8:48   0 931.5G  0 disk   /dev/disk/by-id/ata-ST31000528AS_9VP93P1W /dev/disk/by-id/wwn-0x5000c5002760d8aa
+        sde                              8:64   0 232.9G  0 disk   /dev/disk/by-id/wwn-0x50025385501600f3 /dev/disk/by-id/ata-Samsung_SSD_840_Series_S14GNEBCC25241K
 
     ````
 
