@@ -1,10 +1,12 @@
 ## Proxmox setup etc  (proxve.local)
 
+#### General info
+<details>
+<summary> Naming convention, types of VMs, disks</summary>
 
-#### General info 
 - Naming convention for VMs and CTs: <os>-<purpose>-<container_type>, e.g. deb-nas-ct, ub-media-vm
 - proxve has the static address 192.168.1.10. All the VMs use mDNS.
-- set up mdns on proxve (See mDNS below)
+- proxve can be accessed at proxve.local (See mDNS below)
 - List of disks:
     ```
     /dev/disk/by-id/ata-WDC_WD40EZAZ-00SF3B0_WD-WX62D62K61TY -> ../../sda
@@ -13,9 +15,30 @@
     /dev/disk/by-id/ata-ST31000528AS_9VP93P1W -> ../../sdd
     /dev/disk/by-id/ata-Samsung_SSD_840_Series_S14GNEBCC25241K -> ../../sde
     ```
+- There are only two VMs that have the 4 physical disks passed through to them (see Pass through below). `deb-fs-vm` and `lmint-direct_disk-vm`. These two should not be started at the same time, for disk safety. 
+- `deb-fs-vm` has two functions:
+    - provide samba shares for other VMs identified by:
+        ```
+        //deb-fs-vm/smb-disk4tb
+        //deb-fs-vm/smb-disk1tb
+        ```  
+    - backup the disks to their backup counterparts.
+- `lmint-direct-disk-vm` mounts all 4 disks, but does not provide any samba shares, it is for disk maintenance and operations that may require a GUI program.
+
+</details>
+
+#### Templates
+<!-- - debian-basic-template : only with user shiva configured -->
+- deb-template: User shiva, sudo, mdns configured. Has a script: 
+`/home/shiva/mount_smb.sh` for mounting the two samba disks.
+- lmint-template: User shiva configured. Has a script:
+`/home/shiva/mount_smb.sh` for mounting the two samba disks.
 
 
+#### Create VM from template
+- Clone the template and change the file `/etc/hostname`. Reboot. Optionally,  run `apt update` and `apt upgrade`.
 
+---
 #### VM for file server (deb-fs-vm, VM ID 107)
 - Create VM from the debian template iso 2048/1096 mem/swap, 1 cpu, 8G disk, DHCP
 - Set up mDNS (See LinuxHowTos)
@@ -44,9 +67,13 @@
     - add user 'shiva' to the samba group: `smbpasswd -a shiva`
     - Add entries in `/etc/samba/smb.conf` for the two shared disks
 
-#### Templates
-- debian-basic-template : only with user shiva configured
-- deb-mdns-template: User shiva, sudo, mdns configured. Two samba disks are mounted, `/mnt/smbdisk4tb` and `/mnt/smbdisk1tb`
+
+---
+#### Torrent downloader (lmint-torrent_vm)
+- NordVPN, qTorrent, installed, smb disks mounted
+- While connected to VPN, cannot access smb disks
+- Torrent downloads stored in ~/TDownload/
+- Occasionally move downloaded files to disk4tb
 
 
 #### Mount SMB shares: (see LinuxHowTos)
@@ -74,4 +101,23 @@ Hot plug hhysical device as a virtual scsi disk:\
 
 To remove:\
 `qm unlink <VM #> --idlist scsi2`
+
+## ToDo
+
+- Create deb-fs-vm from deb-template
+    - publish samba shares
+    - LATER: change the file and dir permissions to 755 for all the disks
+    - LATER: add backup cron job
+
+- Create lmint-template 
+    - Create a vm from from lmint iso
+    - add mdns
+    - add scripts for smb manual mounting, adding smb to /etc/fstab
+
+- Create lmint-direct-disk-vm 
+    - create vm from lmint-template
+    - Pass through physical disks
+    -
+
+
 

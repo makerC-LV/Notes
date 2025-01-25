@@ -23,6 +23,13 @@ Follow: https://www.wikihow.com/Linux-How-to-Mount-Drive
 - find UUID of each mounted partition via `ls -l /dev/disk/by-uuid/`
 - For temporary mount `mount /dev/sdb /mount/point` suffices
 - Unmounting: `umount /mount/point`
+- Current `/etc/fstab` entries for all 4 disks:
+    ```
+    UUID=db23fd57-5a7b-421e-b96e-0d235eb5b354  /media/disk4tb  ext4  defaults 0 0
+    UUID=d8984d8f-0128-4791-b299-69f26b5f6eaa /media/disk1tb ext4 defaults 0 0
+    UUID=bf75d5b6-6531-48b3-8b52-a155c96e013e /media/backupdisk4tb ext4 defaults 0 0
+    UUID=82108674-0fa7-4d58-85b3-0c9371a99b84 /media/backupdisk1tb ext4 defaults 0 0
+    ```
 
 
 ---
@@ -91,4 +98,17 @@ avahi-browse --all       - or -
 mdns-scan
 ```
 
+---
+#### Add sudo to Debian (not installed by default)
+Change to root using `su -`
+```
+apt install sudo
+usermod -aG sudo [username] 
+```
+reboot.
+
+---
+#### Allow root login with password on Debian
+Follow: https://linuxconfig.org/enable-ssh-root-login-on-debian-linux-server
+Edit `/etc/ssh/sshd_config`, change the line for `PermitRootLogin` to say `yes`. Reboot.
 

@@ -1,0 +1,32 @@
+Send: M503
+Recv: echo:; Linear Units:
+Recv: echo:  G21 ; (mm)
+Recv: echo:; Temperature Units:
+Recv: echo:  M149 C ; Units in Celsius
+Recv: echo:; Filament settings (Disabled):
+Recv: echo:  M200 S0 D1.75
+Recv: echo:; Steps per unit:
+Recv: echo:  M92 X80.00 Y80.00 Z400.00 E95.00
+Recv: echo:; Max feedrates (units/s):
+Recv: echo:  M203 X2500.00 Y2500.00 Z100.00 E25.00
+Recv: echo:; Max Acceleration (units/s2):
+Recv: echo:  M201 X500.00 Y500.00 Z100.00 E5000.00
+Recv: echo:; Acceleration (units/s2) (P<print-accel> R<retract-accel> T<travel-accel>):
+Recv: echo:  M204 P600.00 R1000.00 T800.00
+Recv: echo:; Advanced (B<min_segment_time_us> S<min_feedrate> T<min_travel_feedrate> J<junc_dev>):
+Recv: echo:  M205 B20000.00 S0.00 T0.00 J0.07
+Recv: echo:; Home offset:
+Recv: echo:  M206 X0.00 Y0.00 Z0.00
+Recv: echo:; Auto Bed Leveling:
+Recv: echo:  M420 S0 Z10.00 ; Leveling OFF
+Recv: echo:; Material heatup parameters:
+Recv: echo:  M145 S0 H205.00 B60.00 F0
+Recv: echo:  M145 S1 H235.00 B80.00 F0
+Recv: echo:; Hotend PID:
+Recv: echo:  M301 P22.20 I1.08 D114.00
+Recv: echo:; Filament load/unload:
+Recv: echo:  M603 L430.00 U430.00 ; (mm)
+Recv: echo:; Filament runout sensor:
+Recv: echo:  M412 S1 ; Sensor ON
+Recv: ok P15 B3
+R
