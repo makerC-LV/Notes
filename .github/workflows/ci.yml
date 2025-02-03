@@ -26,5 +26,4 @@ jobs:
           restore-keys: |
             mkdocs-material-
       - run: pip install mkdocs-material 
-      - run: cd my-notes
-      - run: mkdocs gh-deploy --force
+      - run: cd my-notes; mkdocs gh-deploy --force

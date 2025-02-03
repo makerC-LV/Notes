@@ -2,6 +2,8 @@
 
 MKDocs documentation is [here](https://www.mkdocs.org/getting-started)
 
+- Deploying this site
+
 - Material for Mkdocs: Good theme and documentation [this link](https://squidfunk.github.io/mkdocs-material/getting-started/)
 
 - Publish site on Github-pages: [this link](https://squidfunk.github.io/mkdocs-material/publishing-your-site/#with-github-actions-material-for-mkdocs)
