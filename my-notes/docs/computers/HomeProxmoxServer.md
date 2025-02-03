@@ -36,12 +36,11 @@ Based on Win 10 Pro, and has `/fs.local/exports/disk4tb` mounted as drive Z:. <b
 for Proxmox configuration steps. When going through the installer, at a stage, it insists that you create 
 a Microsoft account. [See this video](https://www.youtube.com/watch?v=45n6_7DnrWc)
 for a good explanation. Essentially:
-- when the installer asks for your microsoft account, in ProxMox, go to 
-`VM->Hardware->Network` and doubple click, which brings up the edit dialog.
-In there select the `Disconnected` checkbox. 
-- Then, in the installer, select `Create account`. At this point, the installer will just 
-give you the option to create a username for the computer user.
-- After installation, [mount the nfs drive](https://www.dell.com/support/kbdoc/en-us/000019642/ecs-how-to-mount-nfs-share-on-windows-client)
+
+  - when the installer asks for your microsoft account, in ProxMox, go to 
+`VM->Hardware->Network` and doubple click, which brings up the edit dialog. Select the `Disconnected` checkbox. 
+  - Then, in the installer, select `Create account`. At this point, the installer will just give you the option to create a username for the computer user. Once you get past this stage, reconnect the disconnected network interface.
+  - After installation, [mount the nfs drive](https://www.dell.com/support/kbdoc/en-us/000019642/ecs-how-to-mount-nfs-share-on-windows-client)
 and [make it persistent](https://www.opswat.com/docs/mdss/knowledge-base/windows-deployment--how-to-create-a-persistent-mount-for-smb-and)
 
 
