@@ -2,6 +2,7 @@
 
 [Klipper Documentation](https://www.klipper3d.org/Overview.html)<br>
 [Klipper configs at Github](https://github.com/Klipper3d/klipper/tree/master/config)<br>
+[My working config with BLTouch](./printer.cfg)<br>
 [Klipper cartesian printer example cfg](./example-cartesian.cfg)<br>
 [Generic ramps cfg](./generic-ramps.cfg)<br>
 [Klipper Cr10S cfg](./printer-creality-cr10s-2017.cfg)<br>
@@ -11,7 +12,13 @@
 Used the Klipper Cr10s file as a starting point, substituted the LCD portion from sample-lcd.config,
 and added bed screws and bed-levelling sections.
 - Added start print and end print gcode sections from sample-macros.cfg in Klipper configs.
-- Added heater_fan section based on  https://klipper.discourse.group/t/starting-the-nozzle-fan-when-nozzle-is-heated-above-50-c/10487 and https://www.klipper3d.org/Config_Reference.html#heater_fan
+- **NOTE: not working** Added heater_fan section based on  https://klipper.discourse.group/t/starting-the-nozzle-fan-when-nozzle-is-heated-above-50-c/10487 and https://www.klipper3d.org/Config_Reference.html#heater_fan
+
+## TODO
+- Probe print region before print
+- Clean nozzle before print
+- Exclude object section in printer.cfg
+
 
 
 ## printer.cfg
@@ -31,3 +38,5 @@ and added bed screws and bed-levelling sections.
 https://www.youtube.com/watch?v=i_541iD5Bj0 : Shows how to create a printer.cfg from scratch. Good tips about getting certain settings from Marlin.
 
 
+## Odds and ends
+- Load bed mesh before each print - add to gcode: `BED_MESH_PROFILE load=default`
