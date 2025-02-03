@@ -3,6 +3,8 @@
 MKDocs documentation is [here](https://www.mkdocs.org/getting-started)
 
 - Deploying this site
+   - Manually: run `mkdocs gh-deploy`
+   - CI set up via `.github/workflows/ci.yml` (following [this](https://squidfunk.github.io/mkdocs-material/publishing-your-site/))
 
 - Material for Mkdocs: Good theme and documentation [this link](https://squidfunk.github.io/mkdocs-material/getting-started/)
 
