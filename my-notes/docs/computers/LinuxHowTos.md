@@ -103,6 +103,8 @@ username=shiva
 password=<pw>
 ```
 
+#### Check what shares are available on a server
+`smbclient -L <server IP or name>`
 
 ---
 #### Disk performance with dd
@@ -184,5 +186,11 @@ Edit `/etc/ssh/sshd_config`, change the line for `PermitRootLogin` to say `yes`.
 #### See NFS shares from an IP or hostname
 `showmount -e <IP or hostname>`
 
+---
+#### Handy dns-sd Commands
+- `dns-sd -B _http` – search the LAN for any HTTP services and update when any new ones are found.
 
+- `dns-sd -R myservice _http._tcp local 8080` – Advertise a local HTTP service on port 8080 to your local network (whether there actually is one or not).
+
+- `dns-sd -L dns-sd -L myservername _http._tcp local` – resolve the IP/domain and port of an advertised service.
 

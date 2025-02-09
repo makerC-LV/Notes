@@ -23,11 +23,12 @@
 
 #### deb12Template 
 - Debian configured with mDns, sudoer and root login.
-- Samba client libs loaded.
+- NFS client libs installed (nfs-common).
 - scripts directory under `/home/shiva/` with some utils.
 - To create a VM from this: `GUI->right-click->Clone`. 
 - If not a temporary VM, select `Full clone` in the next dialog.
-- After startup, change `/etc/hostname` and `/etc/hosts`, replacing `deb12Template` with the new hostname, and reboot. The VM will be accessible at `<hostname>.local`
+- After startup, run `sudo ~/scripts/change_hostname.sh`. After entering the new hostname, at the prompt, reboot. The VM will be accessible at `<hostname>.local`
+- Optionally, to mount the 4tb disk, run `~/scripts/mount_shared_drive.sh`. This will mount the drive at `/mnt/nfs/fs/disk4tb`.
 
 #### win10ProTemplate
 
@@ -48,32 +49,46 @@ and [make it persistent](https://www.opswat.com/docs/mdss/knowledge-base/windows
 ### VMs
 
 #### fs (file server)
-Cloned from `fs` template. Serves the 4tb nvme disk to the network via nfs. Using a VM instead of a container because nfs-kernel-server doesn't work well with containers.
-- **PCIe passthrough** Has the disk passed using pcie passthrough.
-`root@pve:~# qm set 101 -scsi1 /dev/disk/by-id/nvme-KLEVV_CRAS_C910_M.2_NVMe_SSD_4TB_2024051002002470`
+Full clone of [deb12Template](#deb12template). Serves the 4tb nvme disk to the network via nfs and smb (for Windows machines). Using a VM instead of a container because nfs-kernel-server doesn't work well with containers.
 
-- Mounted in /etc/fstab with `UUID=cbf3cf4a-38b6-4d91-8f90-e06d0202af3d  /media/disk4tb  ext4  defaults  0 1
-`
+- **PCIe passthrough** Has the disk passed using pcie passthrough.After creating the VM,
+```root@pve:~# qm set 101 -scsi1 /dev/disk/by-id/nvme-KLEVV_CRAS_C910_M.2_NVMe_SSD_4TB_2024051002002470```
 
-- **Important:** exclude this disk from VM backup. We backup this disk manually. In gui select `fs -> hardware -> Hard disk (scsi1)` then click `Edit` and then `Advanced`. Deselect the `Backup` checkbox. <br>The disk is mounted at `/media/disk4tb` and exported via /exports/disk4tb
-- A nightly cron job is scheduled that backs up disk4tb to backup-server.
+- Mounted in /etc/fstab with 
+```
+UUID=cbf3cf4a-38b6-4d91-8f90-e06d0202af3d  /media/disk4tb  ext4  defaults  0 1
+```
+
+- Shared via `/exports/disk4tb`. `/media/disk4tb` is [bind mounted](./LinuxHowTos.md#bind-mount) to `exports/disk4tb` in `/etc/fstab`: 
+```
+/media/disk4tb /exports/disk4tb none bind,rw
+```
+
+- **Important:** exclude this disk from VM backup. We backup this disk manually. In gui select `fs -> hardware -> Hard disk (scsi1)` then click `Edit` and then `Advanced`. Deselect the `Backup` checkbox. 
+
+- A nightly cron job is scheduled that backs up disk4tb to [backup-server](./BackupServer.md).
 ```
 0 2 * * * rsync -avz /media/disk4tb/data/ /mnt/nfs/backup-server/d1-4tb/backup-disk4tb/data/
 ```
 
-- To nfs mount the 4TB disk on another machine, add the following line to /etc/fstab:<br> `fs.local:/exports/disk4tb /mnt/nfs/fs/disk4tb nfs defaults 0 0`. Don't forget to install nfs-common (see nfs client side in Linux HowTos)
+- To nfs mount the 4TB disk on another machine
+    - install nfs-common: `sudo apt install nfs-common`
+    - add the following line to /etc/fstab:<br>
+    ```
+    fs.local:/exports/disk4tb /mnt/nfs/fs/disk4tb nfs defaults 0 0
+    ``` 
 
-**Backup for the fs VM:**  Scheduled via GUI: `Datacenter->Backups`
+- **Backup for the fs VM:**  Scheduled via GUI: `Datacenter->Backups`
 
----
-#### fs (SMB file server)
-Full clone of **deb12Template**. Serves the 4tb nvme disk to the network via SMB<br>.
-**Setup**
-- **SMB**: Follows [this guide](https://ubuntu.com/tutorials/install-and-configure-samba#2-installing-samba) for installation, and 
+- **SMB share** `/exports/disk4tb` is also shared via SMB, only for Windows and only to user `shiva`. 
+    - Follows [this guide](https://ubuntu.com/tutorials/install-and-configure-samba#2-installing-samba) for installation, and 
 [this guide](https://www.virtono.com/community/tutorial-how-to/samba-sharing-with-authentication/) on how to set up SMB shares *with authentication*.
-- Only one samba user, `shiva`, and all access must be made using this user: `sudo smbpasswd -a shiva`
 
-- **wsdd** - Allows the shared directories to be discoverable by Windows. Install with `apt install wsdd`, [Github page](https://github.com/christgau/wsdd/tree/master)
+
+    - Only one samba user, `shiva`, and all access must be made using this user: `sudo smbpasswd -a shiva`
+
+    - **wsdd** - Allows the shared directories to be discoverable by Windows. Install with `apt install wsdd`, [Github page](https://github.com/christgau/wsdd/tree/master)
+
 
 - A nightly cron job is scheduled that backs up disk4tb to backup-server.
 ```
@@ -82,7 +97,7 @@ Full clone of **deb12Template**. Serves the 4tb nvme disk to the network via SMB
 ---
 #### ms (Media server)
 Cloned from `fs` template. Has 4tb disk mounted at `/media/disk4tb`
-- Jellyfin installed from website installation instr.
+- Jellyfin installed from website installation instr.   
 
 
 picoreplayer + pirate audio: [this post](https://forums.lyrion.org/forum/user-forums/linux-unix/108174-jivelite-on-a-pirate-audio-240x240-screen/page24?111502-Jivelite-on-a-Pirate-Audio-240x240-screen=&viewfull=1#post1421255)

@@ -7,7 +7,7 @@
 - Naming convention for VMs and CTs: <os>-<purpose>-<container_type>, e.g. deb-nas-ct, ub-media-vm
 - proxve has the static address 192.168.1.10. All the VMs use mDNS.
 - proxve can be accessed at proxve.local (See mDNS below)
-- List of disks:
+- List of disks:      
     ```
     /dev/disk/by-id/ata-WDC_WD40EZAZ-00SF3B0_WD-WX62D62K61TY -> ../../sda
     /dev/disk/by-id/ata-ST31000528AS_9VP9397Y -> ../../sdb
@@ -119,5 +119,6 @@ To remove:\
     - Pass through physical disks
     -
 
+- Now I'll type a program   
 
 
