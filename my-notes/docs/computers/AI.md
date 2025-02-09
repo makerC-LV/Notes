@@ -20,3 +20,7 @@
 - Coding assistant in VScode
     - Continue plugin
         - [Article](https://developer.ibm.com/tutorials/awb-local-ai-copilot-ibm-granite-code-ollama-continue/) using IBM granite (good for resources, but tab completions doesn't seem to work)
+
+
+- AI Literature
+    - [Wolfram's article](https://writings.stephenwolfram.com/2023/02/what-is-chatgpt-doing-and-why-does-it-work/)
