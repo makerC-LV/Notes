@@ -1,0 +1,1126 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../..">
+      
+      
+        <link rel="next" href="../HomeProxmoxServer/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.7">
+    
+    
+      
+        <title>Linux How-Tos - My Docs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.8608ea7d.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#typical-linux-command-line-stuff" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="My Docs" class="md-header__button md-logo" aria-label="My Docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            My Docs
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Linux How-Tos
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="My Docs" class="md-nav__button md-logo" aria-label="My Docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    My Docs
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Computers
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Computers
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Linux How-Tos
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Linux How-Tos
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#typical-linux-command-line-stuff" class="md-nav__link">
+    <span class="md-ellipsis">
+      Typical Linux command line stuff
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Typical Linux command line stuff">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bind-mount" class="md-nav__link">
+    <span class="md-ellipsis">
+      Bind mount
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#assign-static-ip-debianubuntu" class="md-nav__link">
+    <span class="md-ellipsis">
+      Assign static IP (Debian/Ubuntu)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#find-ip-address" class="md-nav__link">
+    <span class="md-ellipsis">
+      Find IP address
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#see-disks-with-id-ls-devby-id" class="md-nav__link">
+    <span class="md-ellipsis">
+      See disks with id ls /dev/by-id/
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nfs-file-sharing" class="md-nav__link">
+    <span class="md-ellipsis">
+      NFS file sharing
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#samba-notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Samba notes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mounting-disk" class="md-nav__link">
+    <span class="md-ellipsis">
+      Mounting disk
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mounting-smb-disk" class="md-nav__link">
+    <span class="md-ellipsis">
+      Mounting SMB disk
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#check-what-shares-are-available-on-a-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      Check what shares are available on a server
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#disk-performance-with-dd" class="md-nav__link">
+    <span class="md-ellipsis">
+      Disk performance with dd
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#network-performance-with-iperf-from-here" class="md-nav__link">
+    <span class="md-ellipsis">
+      Network performance with iperf from here
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#set-up-mdns-get-xxxlocal-dns-values" class="md-nav__link">
+    <span class="md-ellipsis">
+      Set up mDNS (Get xxx.local DNS values)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#view-all-mdns-services-on-the-network" class="md-nav__link">
+    <span class="md-ellipsis">
+      View all mDns services on the network
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#add-sudo-to-debian-not-installed-by-default" class="md-nav__link">
+    <span class="md-ellipsis">
+      Add sudo to Debian (not installed by default)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#allow-root-login-with-password-on-debian" class="md-nav__link">
+    <span class="md-ellipsis">
+      Allow root login with password on Debian
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#disk-formatting-and-partitioning-dd-wipefs-fdisk" class="md-nav__link">
+    <span class="md-ellipsis">
+      Disk formatting and partitioning (dd, wipefs, fdisk)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#see-nfs-shares-from-an-ip-or-hostname" class="md-nav__link">
+    <span class="md-ellipsis">
+      See NFS shares from an IP or hostname
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#handy-dns-sd-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      Handy dns-sd Commands
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Proxmox.md" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Proxmox
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../HomeProxmoxServer/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home Proxmox Server
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../AI/AI/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    AI
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    3d Printing
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            3d Printing
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../3dPrinting/Klipper/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Klipper
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../3dPrinting/OrcaSlicer.md" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Orca slicer
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MKDocsHowTos/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    MKDocs
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#typical-linux-command-line-stuff" class="md-nav__link">
+    <span class="md-ellipsis">
+      Typical Linux command line stuff
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Typical Linux command line stuff">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bind-mount" class="md-nav__link">
+    <span class="md-ellipsis">
+      Bind mount
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#assign-static-ip-debianubuntu" class="md-nav__link">
+    <span class="md-ellipsis">
+      Assign static IP (Debian/Ubuntu)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#find-ip-address" class="md-nav__link">
+    <span class="md-ellipsis">
+      Find IP address
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#see-disks-with-id-ls-devby-id" class="md-nav__link">
+    <span class="md-ellipsis">
+      See disks with id ls /dev/by-id/
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nfs-file-sharing" class="md-nav__link">
+    <span class="md-ellipsis">
+      NFS file sharing
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#samba-notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Samba notes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mounting-disk" class="md-nav__link">
+    <span class="md-ellipsis">
+      Mounting disk
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mounting-smb-disk" class="md-nav__link">
+    <span class="md-ellipsis">
+      Mounting SMB disk
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#check-what-shares-are-available-on-a-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      Check what shares are available on a server
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#disk-performance-with-dd" class="md-nav__link">
+    <span class="md-ellipsis">
+      Disk performance with dd
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#network-performance-with-iperf-from-here" class="md-nav__link">
+    <span class="md-ellipsis">
+      Network performance with iperf from here
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#set-up-mdns-get-xxxlocal-dns-values" class="md-nav__link">
+    <span class="md-ellipsis">
+      Set up mDNS (Get xxx.local DNS values)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#view-all-mdns-services-on-the-network" class="md-nav__link">
+    <span class="md-ellipsis">
+      View all mDns services on the network
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#add-sudo-to-debian-not-installed-by-default" class="md-nav__link">
+    <span class="md-ellipsis">
+      Add sudo to Debian (not installed by default)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#allow-root-login-with-password-on-debian" class="md-nav__link">
+    <span class="md-ellipsis">
+      Allow root login with password on Debian
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#disk-formatting-and-partitioning-dd-wipefs-fdisk" class="md-nav__link">
+    <span class="md-ellipsis">
+      Disk formatting and partitioning (dd, wipefs, fdisk)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#see-nfs-shares-from-an-ip-or-hostname" class="md-nav__link">
+    <span class="md-ellipsis">
+      See NFS shares from an IP or hostname
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#handy-dns-sd-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      Handy dns-sd Commands
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+  <h1>Linux How-Tos</h1>
+
+<h2 id="typical-linux-command-line-stuff">Typical Linux command line stuff</h2>
+<h4 id="bind-mount">Bind mount</h4>
+<p>Kernel feature, mounts a directory somewhere else in the directory tree.</p>
+<pre><code>mount --bind /some/where /else/where
+mount -o bind /some/where /else/where
+</code></pre>
+<p>Bind mounts in <code>/etc/fstab</code>: <code>/media/d1-1tb /exports/d1-1tb none bind,rw</code></p>
+<h4 id="assign-static-ip-debianubuntu">Assign static IP (Debian/Ubuntu)</h4>
+<p>Use the Network Manager app. (Search "network" in startmenu)</p>
+<hr />
+<h4 id="find-ip-address">Find IP address</h4>
+<p><code>ip addr</code></p>
+<hr />
+<h4 id="see-disks-with-id-ls-devby-id">See disks with id <code>ls /dev/by-id/</code></h4>
+<h4 id="nfs-file-sharing">NFS file sharing</h4>
+<p><a href="https://bluexp.netapp.com/blog/azure-anf-blg-linux-nfs-server-how-to-set-up-server-and-client">A simple guide</a> - open access.<br>
+<strong>Server side</strong><br></p>
+<pre><code>sudo apt install nfs-kernel-server
+sudo mkdir /mnt/myshareddir
+sudo chown nobody:nogroup /mnt/myshareddir #no-one is owner
+sudo chmod 777 /mnt/myshareddir #everyone can modify files
+</code></pre>
+<p>Add line to <code>/etc/exports</code></p>
+<pre><code>/mnt/mysharedir  *.local(rw,sync,no_root_squash,no_subtree_check) 192.168.68.1/24(rw,sync,no_root_squash,no_subtree_check)
+</code></pre>
+<pre><code>sudo exportfs -a #making the file share available
+sudo systemctl restart nfs-kernel-server #restarting the NFS kernel
+</code></pre>
+<p><strong>Client side</strong></p>
+<pre><code>sudo apt install nfs-common
+</code></pre>
+<p>Check if mount is available: <code>sudo showmount -e &lt;server_hostname&gt;</code><br></p>
+<pre><code>sudo mkdir /mnt/locally-mounted
+#Mount syntax below
+#sudo mount -t nfs {IP of NFS server}:{folder path on server} /mnt/locally-mounted
+sudo mount -t nfs backup-server.local:/mnt/myshareddir /mnt/locally-mounted
+</code></pre>
+<p>Temporary mount:</p>
+<pre><code>sudo mount -t nfs4 backup-server.local:/exports/test /mnt/nfs/ -o defaults,user,exec,_netdev
+</code></pre>
+<p>Mount at boot: <code>/etc/fstab</code> entry:</p>
+<pre><code>{IP of NFS server}:{folder path on server} /var/locally-mounted nfs defaults 0 0
+</code></pre>
+<hr />
+<h4 id="samba-notes">Samba notes</h4>
+<p>Unable to set up smb so that (a) the share is not public and (b) the written files have the same user permissions, regardless of which machine is writing them. </p>
+<p>Follow these <a href="https://ubuntu.com/tutorials/install-and-configure-samba#3-setting-up-samba">simple installation instructions</a> and configure <code>smb.conf</code> following <a href="https://www.samba.org/~ab/output/htmldocs/Samba3-HOWTO/FastStart.html#id2580815">these worked examples</a> (CAUTION, they don't quite work as advertised)</p>
+<hr />
+<h4 id="mounting-disk">Mounting disk</h4>
+<p>Follow: https://www.wikihow.com/Linux-How-to-Mount-Drive
+- edit /etc/fstab, add lines like <code>UUID=&lt;...&gt; /mount/point ext4 defaults 0 0</code>
+- find UUID of each mounted partition via <code>ls -l /dev/disk/by-uuid/</code>
+- For temporary mount <code>mount /dev/sdb /mount/point</code> suffices
+- Unmounting: <code>umount /mount/point</code>
+- Current <code>/etc/fstab</code> entries for all 4 disks:
+    <code>UUID=db23fd57-5a7b-421e-b96e-0d235eb5b354  /media/disk4tb  ext4  defaults 0 0
+    UUID=d8984d8f-0128-4791-b299-69f26b5f6eaa /media/disk1tb ext4 defaults 0 0
+    UUID=bf75d5b6-6531-48b3-8b52-a155c96e013e /media/backupdisk4tb ext4 defaults 0 0
+    UUID=82108674-0fa7-4d58-85b3-0c9371a99b84 /media/backupdisk1tb ext4 defaults 0 0</code></p>
+<hr />
+<h4 id="mounting-smb-disk">Mounting SMB disk</h4>
+<p>Follow: https://www.linode.com/docs/guides/linux-mount-smb-share/
+- Install cifs: <code>apt install cifs-utils psmisc</code>
+- Check with <code>mount -t cifs</code></p>
+<p>Add the following lines to <code>/etc/fstab</code></p>
+<pre><code>//deb-fs-vm/smb-disk4tb /mnt/smbdisk4tb cifs x-systemd.automount,rw,relatime,vers=3.1.1,cache=strict,credentials=/home/shiva/.credentials,uid=1000,gid=1000,file_mode=0777,dir_mode=0777 0 0
+//deb-fs-vm/smb-disk1tb /mnt/smbdisk1tb cifs x-systemd.automount,rw,relatime,vers=3.1.1,cache=strict,credentials=/home/shiva/.credentials,uid=1000,gid=1000,file_mode=0777,dir_mode=0777 0 0
+</code></pre>
+<p>The <code>x-systemd.automount</code> mounts the disk at first access. (This may cause issues with programs that need the disks to be mounted at boot time)\
+Create a <code>/home/shiva/.credentials</code> file that looks like:</p>
+<pre><code>username=shiva
+password=&lt;pw&gt;
+</code></pre>
+<h4 id="check-what-shares-are-available-on-a-server">Check what shares are available on a server</h4>
+<p><code>smbclient -L &lt;server IP or name&gt;</code></p>
+<hr />
+<h4 id="disk-performance-with-dd">Disk performance with dd</h4>
+<p>throughput.sh</p>
+<pre><code>#!/bin/sh
+dd if=/dev/zero of=./throughput.img bs=1G count=1 oflag=dsync
+</code></pre>
+<p>latency.sh</p>
+<pre><code>#!/bin/sh
+dd if=/dev/zero of=./latency.img  bs=512 count=1000 oflag=dsync
+</code></pre>
+<hr />
+<h4 id="network-performance-with-iperf-from-here">Network performance with iperf <a href="https://askubuntu.com/questions/7976/how-do-you-test-the-network-speed-between-two-boxes">from here</a></h4>
+<p><code>sudo apt install iperf</code>
+on one machine:  <code>iperf -s  # start iperf server</code><br>
+on the other machine: <code>iperf -c &lt;address of other computer&gt;</code></p>
+<hr />
+<h4 id="set-up-mdns-get-xxxlocal-dns-values">Set up mDNS  (Get xxx.local DNS values)</h4>
+<pre><code>apt-get install avahi-daemon
+#### Firewall (here uncomplicated firewall on ubuntu)
+ufw allow mdns
+</code></pre>
+<p>Fix /etc/nsswitch.conf</p>
+<pre><code>CHANGE  hosts:          files mdns4_minimal [NOTFOUND=return] dns mdns4
+TO      hosts:          files mdns4_minimal dns mdns4 [NOTFOUND=return]
+</code></pre>
+<p>/etc/avahi/avahi-daemon.conf
+[publish]
+publish-workstation=yes</p>
+<pre><code>#### If you don't like applications to publish their services
+disable-user-service-publishing=yes
+</code></pre>
+<p>/etc/avahi/services/</p>
+<pre><code>Remove services (files) that you don't want to publish
+</code></pre>
+<p>Restart daemon
+<code>service avahi-daemon restart</code></p>
+<hr />
+<h4 id="view-all-mdns-services-on-the-network">View all mDns services on the network</h4>
+<pre><code>avahi-browse --all       - or - 
+mdns-scan
+</code></pre>
+<hr />
+<h4 id="add-sudo-to-debian-not-installed-by-default">Add sudo to Debian (not installed by default)</h4>
+<p>Change to root using <code>su -</code></p>
+<pre><code>apt install sudo
+usermod -aG sudo [username] 
+</code></pre>
+<p>reboot.</p>
+<hr />
+<h4 id="allow-root-login-with-password-on-debian">Allow root login with password on Debian</h4>
+<p>Follow: https://linuxconfig.org/enable-ssh-root-login-on-debian-linux-server
+Edit <code>/etc/ssh/sshd_config</code>, change the line for <code>PermitRootLogin</code> to say <code>yes</code>. Reboot.</p>
+<hr />
+<h4 id="disk-formatting-and-partitioning-dd-wipefs-fdisk">Disk formatting and partitioning (dd, wipefs, fdisk)</h4>
+<ul>
+<li>list disks: <code>lsblk</code></li>
+<li>Delete all partitions: </li>
+<li>Option 1: <code>wipefs -a /dev/sdx</code></li>
+<li>Option 2: <code>dd if=/dev/zero of=/dev/[disk device] bs=512 count=1</code>  (only remove MBR, fast)</li>
+<li>Option 3: <code>dd if=/dev/zero of=/dev/[disk device] bs=100M oflag=direct status=progress</code>  (writes zeros to the whole disk, oflag and bs speed things up considerably)</li>
+<li>Create partitions with <code>fdisk</code> Follow <a href="https://docs.otc.t-systems.com/elastic-volume-service/umn/getting_started/initialize_an_evs_data_disk/initializing_a_linux_data_disk_fdisk.html">this guide</a>. <code>fdisk</code> is an interactive program and quite intuitive.</li>
+</ul>
+<hr />
+<h4 id="see-nfs-shares-from-an-ip-or-hostname">See NFS shares from an IP or hostname</h4>
+<p><code>showmount -e &lt;IP or hostname&gt;</code></p>
+<hr />
+<h4 id="handy-dns-sd-commands">Handy dns-sd Commands</h4>
+<ul>
+<li>
+<p><code>dns-sd -B _http</code> – search the LAN for any HTTP services and update when any new ones are found.</p>
+</li>
+<li>
+<p><code>dns-sd -R myservice _http._tcp local 8080</code> – Advertise a local HTTP service on port 8080 to your local network (whether there actually is one or not).</p>
+</li>
+<li>
+<p><code>dns-sd -L dns-sd -L myservername _http._tcp local</code> – resolve the IP/domain and port of an advertised service.</p>
+</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["search.suggest", "search.highlight"], "search": "../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.c8b220af.min.js"></script>
+      
+    
+  </body>
+</html>
