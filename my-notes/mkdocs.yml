@@ -5,7 +5,7 @@ nav:
     - 'Linux How-Tos': ./computers/LinuxHowTos.md
     - 'Proxmox': ./computers/Proxmox.md
     - 'Home Proxmox Server': ./computers/HomeProxmoxServer.md
-    - 'AI': ./computers/AI.md
+    - 'AI': ./computers/AI/AI.md
   - '3d Printing':
     - Klipper: ./3dPrinting/Klipper.md
     - 'Orca slicer': ./3dPrinting/OrcaSlicer.md

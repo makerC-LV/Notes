@@ -30,6 +30,12 @@
 - After startup, run `sudo ~/scripts/change_hostname.sh`. After entering the new hostname, at the prompt, reboot. The VM will be accessible at `<hostname>.local`
 - Optionally, to mount the 4tb disk, run `~/scripts/mount_shared_drive.sh`. This will mount the drive at `/mnt/nfs/fs/disk4tb`.
 
+#### lmintXfceTemplate
+- Linux mint with xfce
+- ssh installed with `sudo apt install ssh`
+- avahi installed
+- nfs disk mounted at /mnt/nfs/...
+
 #### win10ProTemplate
 
 Based on Win 10 Pro, and has `/fs.local/exports/disk4tb` mounted as drive Z:. <br>
